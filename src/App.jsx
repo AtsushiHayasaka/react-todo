@@ -26,6 +26,18 @@ export const App = () => {
     setIncompleteTodos(newTodos);
   };
 
+  const onClickComplete = (index) => {
+    let newIncompleteTodos = [...incompleteTodos];
+    const addTarget = newIncompleteTodos[index];
+    newIncompleteTodos = newIncompleteTodos.filter((todo) => {
+      return todo !== addTarget;
+    });
+
+    const newCompleteTodos = [...completeTodos, addTarget];
+    setIncompleteTodos(newIncompleteTodos);
+    setCompleteTodos(newCompleteTodos);
+  };
+
   return (
     <>
       <div className="input-area">
@@ -44,7 +56,7 @@ export const App = () => {
             return (
               <div key={todo} className="list-row">
                 <li>{todo}</li>
-                <button>完了</button>
+                <button onClick={() => onClickComplete(index)}>完了</button>
                 <button onClick={() => onClickDelete(index)}>削除</button>
               </div>
             );
@@ -58,7 +70,7 @@ export const App = () => {
           {completeTodos.map((todo) => {
             return (
               <div key={todo} className="list-row">
-                <li>todo</li>
+                <li>{todo}</li>
                 <button>戻す</button>
               </div>
             );
