@@ -56,7 +56,13 @@ export const App = () => {
         todoText={todoText}
         onChange={onChangeTodoText}
         onClick={onClickAdd}
+        disabled={incompleteTodos.length >= 5}
       />
+
+      {incompleteTodos.length >= 5 && (
+        <p style={{ color: "red" }}>追加できるtodoは5個までだよ</p>
+      )}
+
       <IncompleteTodos
         incompleteTodos={incompleteTodos}
         onClickDelete={onClickDelete}
@@ -66,3 +72,8 @@ export const App = () => {
     </>
   );
 };
+
+/**
+ * アイテムが５個以上になったらメッセージ出現＆inputと追加buttonにdisabledを
+ *
+ */
